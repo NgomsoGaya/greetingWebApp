@@ -2,16 +2,17 @@
 
     <form action="/greeting" method="POST">
         <div class="backdrop">
-           <div class="errSpace"></div>
-           <div class="clearSpace"></div>
-
+           <div class="errSpace" id="nameErr">{{nameErr}}</div>
+            {{!-- <div class="errSpace">{{nameAndRadioErr}}</div> --}}
+           
             <div class="inputName">
                 <h4>Enter Name:</h4>
                 <input type="text" value="" name="name" class="input" placeholder="Enter your name here">
                 <p class="total">{{counter}}</p>
             </div>
-            <div class="space"></div>
-    
+            <div class="space" id="clearMsg">{{clearCounter}}</div>
+
+            <div class="clearSpace" id="radioErr">{{radioErr}}</div>
             <label class="radiobtn1 btns">
                 <input type="radio" name="language" value="isiXhosa" class="rbtn">
                 <span class="label-body">isiXhosa</span>
@@ -24,12 +25,15 @@
                 <input type="radio" name="language" value="Afrikaans" class="rbtn">
                 <span class="label-body">Afrikaans</span>
             </label>
-             <div class="space">{{greeting}}</div>
+             <div class="space" id="greeting">{{greeting}}</div>
             
             <div class="buttons">
             <button  type="submit" class="button">Greet Me</button>
-            <button type="submit" class="eraseBtn">Erase Counter</button>
+            
             </div>
         </div>
         </form>
-        
+        <form action="/clearing" method="POST">
+            <button type="submit" class="eraseBtn">Erase Counter</button> 
+        </form>
+       

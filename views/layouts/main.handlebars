@@ -14,5 +14,27 @@
         {{{body}}}
     </section>
     <script src="/functions/factory.js"></script>
+    <script>
+        setTimeout(function() {
+            var greeting = document.getElementById('greeting');
+            if (greeting) {
+                greeting.style.display = 'none';
+            }
+             var nameErr = document.getElementById('nameErr');
+            if (nameErr) {
+                nameErr.style.display = 'none';
+            }
+             var clearMsg = document.getElementById('clearMsg');
+            if (clearMsg) {
+                clearMsg.style.display = 'none';
+            }
+             var radioErr = document.getElementById('radioErr');
+            if (radioErr) {
+                radioErr.style.display = 'none';
+            }
+
+           
+        }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
 </body>
 </html>

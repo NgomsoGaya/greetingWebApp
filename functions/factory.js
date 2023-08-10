@@ -2,9 +2,13 @@ export default function Greet() {
 
 let greetingDisplay = []
 let msg = ''
-let errorMsg = ""
+//let errorMsg = ""
 let counter = 0
-      
+    let errorMsg1 = "" 
+    let errorMsg2 = ""
+   // let errorMsg3 = ""
+    let errorMsg4 = ""
+
     function greetings(name, lang) { 
         if (lang == 'isiXhosa' && checkForNames(greetingDisplay, name) == false) {
             if (name) {msg = "Molo, " + name}
@@ -99,55 +103,62 @@ function checkForNames(greetingDisplay, name) {
 
     function nameError(name){
         if(!name){
-            errorMsg = "Please enter your name!"
+          
+            errorMsg1 = "Please enter your name!";
+            
         }
     } 
 
     function getNameError(){
-        return errorMsg
+        return errorMsg1
     }
 
     function radioError(lang){
-        if(!lang){
-            errorMsg = "Please select a language!"
+        if (!lang) {
+            
+            errorMsg2 = "Please select a language!"
         }
     }
 
     function getRadioError(){
-        return errorMsg
+        return errorMsg2
     }
 
-    function nameAlreadyExist(){
-              errorMsg = "Name is already greeted!"
-    }
+    // function nameAlreadyExist() {
+        
+    //           errorMsg = "Name is already greeted!"
+    // }
 
-    function getNameAlreadyExist(){
-         return errorMsg
-    }
-    function nameAndRadioError(name, lang){
-        if(!name && !lang){
-            errorMsg = "Please enter your name and select a language!"
-        } 
-    }
-    function getNameAndRadioError(){
-        return errorMsg
-    }
+    // function getNameAlreadyExist(){
+    //      return errorMsg
+    // }
+
+    // function nameAndRadioError(name, lang){
+    //     if (!name && !lang) {
+          
+    //         errorMsg3 = "Please enter your name and select a language!"
+    //     } 
+    // }
+    // function getNameAndRadioError(){
+    //     return errorMsg3
+    // }
 
     function clearedCounter(){
-        errorMsg = "You have cleared the counter!"
+        
+        errorMsg4 = "You have cleared the counter!"
     }
 
     function getClearedCounter(){
-        return errorMsg
+        return errorMsg4
     }
 
-    function nameNotAllowed(name){
-        errorMsg = "Numbers and special characters are not allowed!"
-    }
+    // function nameNotAllowed(name){
+    //     errorMsg = "Numbers and special characters are not allowed!"
+    // }
 
-    function getNameNotAllowed(){
-        return errorMsg
-    }
+    // function getNameNotAllowed(){
+    //     return errorMsg
+    // }
 
     function clearCounter(){
      greetingDisplay.length = counter
@@ -166,16 +177,15 @@ function checkForNames(greetingDisplay, name) {
       getNameError,
       radioError,
       getRadioError,
-      nameAlreadyExist,
-      getNameAlreadyExist,
-      nameAndRadioError,
-      getNameAndRadioError,
+    //   nameAlreadyExist,
+    //   getNameAlreadyExist,
+    //   nameAndRadioError,
+    //   getNameAndRadioError,
       clearedCounter,
       getClearedCounter,
-      nameNotAllowed,
-      getNameNotAllowed,
+    //   nameNotAllowed,
+    //   getNameNotAllowed,
       clearCounter,
       getClearedCounter2,
     };
-    } 
-    //GREETINGS
+} 
