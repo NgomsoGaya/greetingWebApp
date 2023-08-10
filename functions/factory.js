@@ -1,36 +1,93 @@
-let greetingDisplay = []
-
 export default function Greet() {
 
+let greetingDisplay = []
 let msg = ''
 let errorMsg = ""
 let counter = 0
-
-    function greetings(name, lang){ 
-        
-        if (lang == 'isiXhosa' && !greetingDisplay.includes(name)) {
-                if(name){msg = "Molo, " + name}
-                if(greetingDisplay && !greetingDisplay.includes(name) && name){
-                    greetingDisplay.push(name)
+      
+    function greetings(name, lang) { 
+        if (lang == 'isiXhosa' && checkForNames(greetingDisplay, name) == false) {
+            if (name) {msg = "Molo, " + name}
+                if(greetingDisplay && checkForNames(greetingDisplay, name) == false && name){
+                    greetingDisplay.push({
+                        names: name,
+                        number: 1})
                 }
-               
-            }
-        else if (lang == 'English' && !greetingDisplay.includes(name)) {
-                if(name){msg = "Hello, " + name}
-                if(greetingDisplay && !greetingDisplay.includes(name) && name){
-                    greetingDisplay.push(name)
-                }
-                
-            }
-        else if (lang == 'Afrikaans' && !greetingDisplay.includes(name)) {
-                if(name){msg = "Hallo, " + name}
-                if(greetingDisplay && !greetingDisplay.includes(name) && name){
-                    greetingDisplay.push(name)
-                }
-                
-            }
-
+               //console.log(greetingDisplay)
         }
+
+        else if (lang == "English" && checkForNames(greetingDisplay, name) == false) {
+          if (name) {msg = "Hello, " + name;}
+          if (greetingDisplay && checkForNames(greetingDisplay, name) == false && name) {
+            greetingDisplay.push({
+              names: name,
+              number: 1,});
+          }
+          //console.log(greetingDisplay)
+        }
+
+       else if (lang == "Afrikaans" && checkForNames(greetingDisplay, name) == false) {
+          if (name) {msg = "Hallo, " + name;}
+          if (greetingDisplay && checkForNames(greetingDisplay, name) == false && name) {
+            greetingDisplay.push({
+              names: name,
+              number: 1,});
+          }
+          //console.log(greetingDisplay)
+        }
+
+        else if (checkForNames(greetingDisplay, name) == true) {
+            if (name && lang == 'isiXhosa') { msg = "Molo, " + name; }
+            else if (name && lang == "English") {msg = "Hello, " + name; }
+            else if (name && lang == "Afrikaans") { msg = "Hallo, " + name; }
+            
+                     for (const obj of greetingDisplay) {
+                       if (obj.names === name) {
+                         obj.number += 1;
+                       }
+                     }
+            
+        }
+
+
+       
+
+        // else if (checkForNames(greetingDisplay, name) == true) {
+        //   if (name) {msg = "Hello, " + name;}
+        //   for (const obj of greetingDisplay) {
+        //     if (obj.names === name) {
+        //       obj.number += 1;
+        //     }
+        //   }
+        // }
+
+
+       
+
+        // else if (checkForNames(greetingDisplay, name) == true) {
+        //   if (name) {msg = "Hallo, " + name;}
+        //   for (const obj of greetingDisplay) {
+        //     if (obj.names === name) {
+        //       obj.number += 1;
+        //     }
+        //   }
+       // }
+    }
+
+function checkForNames(greetingDisplay, name) {
+        if (greetingDisplay) {
+         for (const obj of greetingDisplay) {
+         if (obj.names === name) {
+           return true; // Found a matching object
+         }
+       }
+          return false; // No matching object found
+        }
+     }
+
+    function names() {
+        return greetingDisplay
+    }
 
     function getGreeting(){
         return msg
@@ -100,23 +157,25 @@ let counter = 0
         return greetingDisplay.length
     }
     return {
-        greetings,
-        getGreeting,
-        getCounter,
-        nameError,
-        getNameError,
-        radioError,
-        getRadioError,
-        nameAlreadyExist,
-        getNameAlreadyExist,
-        nameAndRadioError,
-        getNameAndRadioError,
-        clearedCounter,
-        getClearedCounter,
-        nameNotAllowed,
-        getNameNotAllowed,
-        clearCounter,
-        getClearedCounter2
-       }
+      greetings,
+      getGreeting,
+      getCounter,
+      names,
+      checkForNames,
+      nameError,
+      getNameError,
+      radioError,
+      getRadioError,
+      nameAlreadyExist,
+      getNameAlreadyExist,
+      nameAndRadioError,
+      getNameAndRadioError,
+      clearedCounter,
+      getClearedCounter,
+      nameNotAllowed,
+      getNameNotAllowed,
+      clearCounter,
+      getClearedCounter2,
+    };
     } 
     //GREETINGS

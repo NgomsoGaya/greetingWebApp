@@ -1,13 +1,14 @@
-<h1>Greeting</h1>
+<a href="/greetings"><h1>Greeting</h1></a>    
 
+    <form action="/greeting" method="POST">
         <div class="backdrop">
            <div class="errSpace"></div>
            <div class="clearSpace"></div>
 
             <div class="inputName">
                 <h4>Enter Name:</h4>
-                <input type="text" value="" class="input" placeholder="Enter your name here">
-                <p class="total">0</p>
+                <input type="text" value="" name="name" class="input" placeholder="Enter your name here">
+                <p class="total">{{counter}}</p>
             </div>
             <div class="space"></div>
     
@@ -23,10 +24,12 @@
                 <input type="radio" name="language" value="Afrikaans" class="rbtn">
                 <span class="label-body">Afrikaans</span>
             </label>
+             <div class="space">{{greeting}}</div>
             
             <div class="buttons">
-            <button class="button">Greet Me</button>
-            <button type="reset" class="eraseBtn">Erase Counter</button>
+            <button  type="submit" class="button">Greet Me</button>
+            <button type="submit" class="eraseBtn">Erase Counter</button>
             </div>
-           
         </div>
+        </form>
+        

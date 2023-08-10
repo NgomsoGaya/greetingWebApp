@@ -24,16 +24,28 @@ app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     res.render("index", {
-        counter: greet.getCounter()
+        counter: greet.getCounter(),
+        greeting: greet.getGreeting()
     })
 });
 
-app.post('/settings', function (req, res) {
-
+app.post('/greeted', function (req, res) {
+    
     res.redirect('/')
 });
 
+app.post("/greeting", function (req, res) {
+    greet.greetings(req.body.name, req.body.language);
 
+  res.redirect("/");
+});
+
+app.get("/greetings", function (req, res) {
+
+    res.render("names", {names: greet.names()})
+   
+});
+//console.log(greet.names())
 
 const PORT = process.env.PORT || 3012
 
