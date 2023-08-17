@@ -3,13 +3,13 @@
 
 <table>
     <tr>
-        <th>Name</th>
-        <th>Number</th>
+        <th>Names</th>
+        {{!-- <th>Number</th> --}}
     </tr>
     {{#each names}}
     <tr>
-        <td>{{names}}</td>
-        <td>{{number}}</td>
+     <td><a href="/greetings/{{username}}">{{username}}</a></td> 
+        {{!-- <td>{{number}}</td> --}}
     </tr>
     {{/each}}
 </table>  
