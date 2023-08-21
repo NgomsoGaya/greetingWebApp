@@ -2,9 +2,7 @@ export default function Greet(db) {
 
 
 let msg = ''
-let errorMsg1 = "" 
-let errorMsg2 = ""
-let errorMsg4 = ""
+
   
   async function greetings(name, lang) {
     try {
@@ -68,7 +66,7 @@ let errorMsg4 = ""
       [username]
     );
 
-    console.log(number)
+    //console.log(number)
     return number
   }
 
@@ -81,46 +79,6 @@ let errorMsg4 = ""
           return "Hallo, " + name;
         } 
   }
-  
-  //console.log(getNames())
-  //     function names() {
-  //       return greetingDisplay
-  //     }
-
- 
-
-  //     function nameError(name) {
-  //       if (!name) {
-  //         errorMsg1 = "Please enter your name!";
-  //       }
-  //     }
-
-  //     function getNameError() {
-  //       return errorMsg1
-  //     }
-
-  //     function radioError(lang) {
-  //       if (!lang) {
-  //         errorMsg2 = "Please select a language!"
-  //       }
-  //     }
-
-  //     function getRadioError() {
-  //       return errorMsg2
-  //     }
-
-  //     function clearedCounter() {
-        
-  //       errorMsg4 = "You have cleared the counter!"
-  //     }
-
-  //     function getClearedCounter() {
-  //       return errorMsg4
-  //     }
-  
-  // function getClearedCounter2() {
-  //       return greetingDisplay.length
-  // }
   
       return {
         greetings,
