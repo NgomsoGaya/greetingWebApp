@@ -38,8 +38,9 @@ let msg = ''
         await db.none(
           "DELETE FROM greetings"
         )
+        msg = "You have cleared the counter."
       }
-  
+ 
   async function getCounter() {
     let queryResult = await db.any("SELECT number FROM greetings");
     return queryResult.length;
@@ -87,6 +88,6 @@ let msg = ''
         getNames,
         getNumber,
         getGreeting,
-        getMsg
+        getMsg,
       };
     }

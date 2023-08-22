@@ -1,5 +1,18 @@
+body{
+    background: linear-gradient(to right, lightgreen, lightblue);
+}
+.space{
+    margin-top: 3%;
+}
 .section{
     text-align: center;
+    border: 2px solid;
+    border-radius: 2%;
+    padding: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 25%;
+    background: linear-gradient(to right, lightblue, lightgreen);
 }
 table{
     margin: 0 auto;
@@ -9,4 +22,25 @@ table{
 }
 .eraseBtn{
     margin-top: 2%;
+}
+.bckhmbtn{
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    margin-top: 3%;
+}
+.bckbtn{
+    margin-top: 3%;
+}
+
+h1{
+    color: navy;
+}
+
+h4, th {
+    color:blue;
+}
+
+th{
+    padding-bottom: 15%;
 }
