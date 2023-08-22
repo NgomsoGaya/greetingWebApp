@@ -1,44 +1,34 @@
 export default function Greet(db) {
 
-
 let msg = ''
 
-  
   async function greetings(name, lang) {
     try {
       const selectQuery = "SELECT * FROM greetings";
       let valueExists = false;
-
       const rows = await db.any(selectQuery);
-
       rows.forEach((row) => {
         if (row.username === name) {
           valueExists = true;
           return; // Exit the loop early since we found the value
         }
       });
-
       if (valueExists === false) {
-       
-          await db.none(
+           if (lang && name){
+            await db.none(
             "insert into greetings (username, number) values ($1, $2)",
             [name, 1]
           );
-         
-          //console.log(greetingDisplay)
-          //let data = await db.any("select * from greetings");
-          //console.log(data);
-      
+           }   
       }
       else if (valueExists === true) {
-        await db.none(
+         if (lang && name){
+          await db.none(
           "UPDATE greetings SET number = number +1 WHERE username = $1",
           [name]
         );
-       // let data = await db.any("select * from greetings");
-       // console.log(data);
+         }
       }
-      return getGreeting(name, lang)
     } catch (error) {
       console.error("Error:", error);
     }
@@ -65,19 +55,29 @@ let msg = ''
       "SELECT number FROM greetings WHERE username = $1",
       [username]
     );
-
-    //console.log(number)
     return number
   }
 
-  async function getGreeting(name, lang) {
-        if (lang == "isiXhosa") {
-          return "Molo, " + name;
+ async function getGreeting(name, lang) {
+      if (lang && name) {
+      if (lang == "isiXhosa") {
+        msg = "Molo, " + name;
         } else if (lang == "English") {
-          return "Hello, " + name;
+         msg =  "Hello, " + name;
         } else if (lang == "Afrikaans") {
-          return "Hallo, " + name;
-        } 
+        msg = "Hallo, " + name;
+        }
+}else if(!name && !lang){
+        msg = "Greetings!"
+}else if(!name){
+        msg = "Please enter your name."
+}else if(!lang){
+        msg = "Please select a language."
+}
+}
+
+  async function getMsg(){
+    return msg;
   }
   
       return {
@@ -87,14 +87,6 @@ let msg = ''
         getNames,
         getNumber,
         getGreeting,
-        // names,
-        // nameError,
-        // getNameError,
-        // radioError,
-        // getRadioError,
-        // clearedCounter,
-        // getClearedCounter,
-       
-       // getClearedCounter2,
+        getMsg
       };
     }

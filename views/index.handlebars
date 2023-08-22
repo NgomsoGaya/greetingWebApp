@@ -1,6 +1,6 @@
-<a href="/greetings"><h1>Greeting</h1></a>    
+<h1>Greeting</h1>  
 
-    <form action="/greeting" method="POST">
+<form action="/greeting" method="POST">
         <div class="backdrop">
           
             {{!-- <div class="errSpace">{{nameAndRadioErr}}</div> --}}
@@ -27,13 +27,12 @@
             </label>
              <div class="space" id="greeting">{{greeting}}</div>
             
-            <div class="buttons">
+            <div class="button1">
             <button  type="submit" class="button">Greet Me</button>
-            
             </div>
         </div>
         </form>
         <form action="/clearing" method="POST">
             <button type="submit" class="eraseBtn">Erase Counter</button> 
         </form>
-       
+       <a href="/greetings"><h2>Names Greeted</h2></a>  

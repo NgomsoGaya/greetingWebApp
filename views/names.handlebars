@@ -1,16 +1,14 @@
-<div class="row">
   <h1>Greeted Names</h1>
 
 <table>
     <tr>
         <th>Names</th>
-        {{!-- <th>Number</th> --}}
     </tr>
+
     {{#each names}}
     <tr>
-     <td><a href="/greetings/{{username}}">{{username}}</a></td> 
-        {{!-- <td>{{number}}</td> --}}
+     <td><a href="/greetings/{{username}}">{{username}}</a></td>
     </tr>
     {{/each}}
-</table>  
-</div>
+
+</table>

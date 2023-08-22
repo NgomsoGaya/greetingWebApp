@@ -1,3 +1,12 @@
 .section{
     text-align: center;
 }
+table{
+    margin: 0 auto;
+}
+.button1{
+    margin-top: 4%;
+}
+.eraseBtn{
+    margin-top: 2%;
+}
