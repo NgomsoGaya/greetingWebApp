@@ -1,10 +1,15 @@
-<h1>Greeting App</h1>  
+<h1>Greeting App</h1> 
+
+        
+            
 
 <form action="/greeting" method="POST">
         <div class="backdrop">
-          
+
             {{!-- <div class="errSpace">{{nameAndRadioErr}}</div> --}}
-           
+            {{#if error}}
+               <p class="space" id="error">{{ error }}</p>
+            {{/if}}
             <div class="inputName">
                 <h4>Enter Name:</h4>
                 <input type="text" value="" name="name" class="input" placeholder="Enter your name here">
@@ -30,7 +35,9 @@
                 <span class="label-body">Afrikaans</span>
             </label>
              <div class="space" id="greeting">{{greeting}}</div>
-             <div class="space" id="error">{{error}}</div>
+
+            
+             {{!-- <div >{{error}}<div> --}}
             <div class="button1">
             <button  type="submit" class="button">Greet Me</button>
             </div>

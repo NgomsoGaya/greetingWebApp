@@ -49,14 +49,14 @@ app.use(bodyParser.json());
 app.get('/', async function (req, res) {
   
   const counter = await greet.getCounter()
-  const message = await greet.getClrMsg();
+ // const message = await greet.getClrMsg();
   // const greeting = await greet.getMsg()
   //greet.getMsg(),
   //const greeted = await greet.greetings(req.body.name, req.body.language)
 
     res.render("index", {
       counter,
-      clrMsg: message,
+     // clrMsg: message,
     });
     
 });
