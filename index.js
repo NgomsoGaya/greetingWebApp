@@ -86,11 +86,15 @@ app.post("/greeting", async function (req, res) {
   
    let username =req.body.name
    let language = req.body.language
-   await greet.setErrorMsg(username, language)
+  
   // let previousMessage = req.cookies.previousMessage || "";
   
   // let newMessage = await generateNewMessage(previousMessage);
-
+  let error = ""
+  if (!username || !language) {
+    await greet.setErrorMsg(username, language)
+    error = await greet.getErrorMsg()
+  }
   // res.cookie('previosMessage', newMessage.identifier)
   let greeting = "";
 
@@ -100,8 +104,6 @@ app.post("/greeting", async function (req, res) {
     greeting = await greet.getMsg()
   }
  
-   
-    const error = await greet.getErrorMsg()
     const counter = await greet.getCounter()
     // const clrMsg = await greet.clearCounter();
     //const clrMsg = await greet.clrMsg()

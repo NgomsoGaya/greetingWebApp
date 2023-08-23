@@ -1,13 +1,14 @@
 import assert from "assert";
 import Greet from "../functions/factory.js";
 import pgPromise from "pg-promise";
+const pgp = pgPromise();
 
 const connectionString =
     process.env.DATABASE_URL || "postgres://greetingtable_user:EAyqRYtDCIU3qD6xdhFMLC8Jh40y8JlN@dpg-cjd1q2k5kgrc739hiflg-a.oregon-postgres.render.com/greetingtable?ssl=true";
   
 const db = pgp(connectionString);
     
-decribe("The greeting web app", function () {
+describe("The greeting web app", function () {
     beforeEach(async function () {
         try {
             await db.none("TRUNCATE TABLE greetings RESTART IDENTITY CASCADE")
