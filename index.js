@@ -4,6 +4,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import exphbs from "express-handlebars";
 import Greet from "./functions/factory.js";
+import Cookie  from "express-session";
 
 import pgPromise from "pg-promise";
 import 'dotenv/config';
@@ -32,6 +33,7 @@ app.engine("handlebars", handlebarSetup);
 app.set("view engine", "handlebars");
 app.set("views", "./views");
 
+
 const greet = Greet(db)
 
   app.use(session({
@@ -43,8 +45,11 @@ const greet = Greet(db)
    app.use(flash());
    app.use(express.static('public'))
 
+
 app.use(bodyParser.urlencoded({ extended: "main" }));
 app.use(bodyParser.json());
+app.use(Cookie());
+
 
 app.get('/', async function (req, res) {
   
@@ -62,21 +67,41 @@ app.get('/', async function (req, res) {
 });
 
 app.post('/clearing',async function (req, res) {
-    //const clrMsg = await greet.clearCounter();
+    await greet.clearCounter();
   //const counter = await greet.getCounter();
-  const counter = await greet.clearCounter();
+ 
   const message = await greet.getClrMsg()
+  const counter = await greet.getCounter();
     //res.render("index", {clrMsg})
-    res.render("index", {clrMsg:message})
+    res.render("index", {clrMsg:message, counter})
 });
 
-app.post("/greeting",async function (req, res) {
+// app.use(session({
+//   secret:"just a secret key used as encryption",
+//   resave: false,
+//   saveUninitialized: true
+// }))
+ 
+app.post("/greeting", async function (req, res) {
+  
+   let username =req.body.name
+   let language = req.body.language
+   await greet.setErrorMsg(username, language)
+  // let previousMessage = req.cookies.previousMessage || "";
+  
+  // let newMessage = await generateNewMessage(previousMessage);
 
-    await greet.greetings(req.body.name, req.body.language);
-  await greet.getGreeting(req.body.name, req.body.language)
-  await greet.setErrorMsg(req.body.name, req.body.language)
-  const error = await greet.getErrorMsg()
-    const greeting = await greet.getMsg()
+  // res.cookie('previosMessage', newMessage.identifier)
+  let greeting = "";
+
+  if (username && language) {
+    await greet.greetings(username, language)
+    await greet.getGreeting(username, language)
+    greeting = await greet.getMsg()
+  }
+ 
+   
+    const error = await greet.getErrorMsg()
     const counter = await greet.getCounter()
     // const clrMsg = await greet.clearCounter();
     //const clrMsg = await greet.clrMsg()

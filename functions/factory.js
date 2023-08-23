@@ -73,12 +73,13 @@ export default function Greet(db) {
       } else if (lang == "Afrikaans") {
         msg = "Hallo, " + name;
       }
-    } else if (!name && !lang) {
-      msg = "Greetings!"
-    }
+    } 
   } 
   async function setErrorMsg(name, lang) {
-    if(!name){
+     if (!name && !lang) {
+      errmsg = "Please enter a name and select a language"
+    }
+    else if(!name){
         errmsg = "Please enter your name."
     }else if(!lang){
         errmsg = "Please select a language."
