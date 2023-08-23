@@ -73,13 +73,15 @@ app.post('/clearing',async function (req, res) {
 app.post("/greeting",async function (req, res) {
 
     await greet.greetings(req.body.name, req.body.language);
-    await greet.getGreeting(req.body.name, req.body.language)
+  await greet.getGreeting(req.body.name, req.body.language)
+  await greet.setErrorMsg(req.body.name, req.body.language)
+  const error = await greet.getErrorMsg()
     const greeting = await greet.getMsg()
     const counter = await greet.getCounter()
     // const clrMsg = await greet.clearCounter();
     //const clrMsg = await greet.clrMsg()
 
-  res.render("index", {greeting, counter});
+  res.render("index", {greeting, counter, error});
 });
 
 app.get("/greetings", async function (req, res) {

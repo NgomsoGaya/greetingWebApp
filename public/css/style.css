@@ -44,3 +44,12 @@ h4, th {
 th{
     padding-bottom: 15%;
 }
+#clearMsg{
+ color: darkgreen;
+}
+#greeting{
+    color: darkgreen;
+}
+#error{
+    color: red;
+}

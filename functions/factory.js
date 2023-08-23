@@ -2,6 +2,7 @@ export default function Greet(db) {
 
   let msg = ''
   let clrMsg = "";
+  let errmsg = ""
 
   async function greetings(name, lang) {
     try {
@@ -63,23 +64,29 @@ export default function Greet(db) {
     return number
   }
 
- async function getGreeting(name, lang) {
-      if (lang && name) {
+  async function getGreeting(name, lang) {
+    if (lang && name) {
       if (lang == "isiXhosa") {
         msg = "Molo, " + name;
-        } else if (lang == "English") {
-         msg =  "Hello, " + name;
-        } else if (lang == "Afrikaans") {
+      } else if (lang == "English") {
+        msg = "Hello, " + name;
+      } else if (lang == "Afrikaans") {
         msg = "Hallo, " + name;
-        }
-}else if(!name && !lang){
-        msg = "Greetings!"
-}else if(!name){
-        msg = "Please enter your name."
-}else if(!lang){
-        msg = "Please select a language."
+      }
+    } else if (!name && !lang) {
+      msg = "Greetings!"
+    }
+  } 
+  async function setErrorMsg(name, lang) {
+    if(!name){
+        errmsg = "Please enter your name."
+    }else if(!lang){
+        errmsg = "Please select a language."
 }
-}
+  }
+   async function getErrorMsg() {
+     return errmsg;
+   }
 
   async function getMsg(){
     return msg;
@@ -89,6 +96,8 @@ export default function Greet(db) {
         greetings,
         getCounter,
         clearCounter,
+        setErrorMsg,
+        getErrorMsg,
         getNames,
         getNumber,
         getGreeting,
