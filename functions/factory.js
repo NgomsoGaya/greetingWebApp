@@ -1,33 +1,32 @@
 export default function Greet(db) {
 
-let msg = ''
+  let msg = ''
+  let clrMsg = "";
 
   async function greetings(name, lang) {
     try {
       const selectQuery = "SELECT * FROM greetings";
       let valueExists = false;
       const rows = await db.any(selectQuery);
+
+      const nameRegex = new RegExp(name, 'i')
       rows.forEach((row) => {
-        if (row.username === name) {
+        if (nameRegex.test(row.username)) {
           valueExists = true;
           return; // Exit the loop early since we found the value
         }
       });
-      if (valueExists === false) {
-           if (lang && name){
+      if (!valueExists && lang) {
             await db.none(
             "insert into greetings (username, number) values ($1, $2)",
             [name, 1]
-          );
-           }   
+          );  
       }
-      else if (valueExists === true) {
-         if (lang && name){
+      else if (valueExists && lang) {
           await db.none(
-          "UPDATE greetings SET number = number +1 WHERE username = $1",
+          "UPDATE greetings SET number = number +1 WHERE username ~* $1",
           [name]
         );
-         }
       }
     } catch (error) {
       console.error("Error:", error);
@@ -38,9 +37,14 @@ let msg = ''
         await db.none(
           "DELETE FROM greetings"
         )
-        msg = "You have cleared the counter."
+        //clrMsg = "You have cleared the counter.";
       }
  
+  async function getClrMsg() {
+       
+        return "You have cleared the counter."; 
+  }
+
   async function getCounter() {
     let queryResult = await db.any("SELECT number FROM greetings");
     return queryResult.length;
@@ -89,5 +93,6 @@ let msg = ''
         getNumber,
         getGreeting,
         getMsg,
+        getClrMsg
       };
     }

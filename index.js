@@ -49,23 +49,25 @@ app.use(bodyParser.json());
 app.get('/', async function (req, res) {
   
   const counter = await greet.getCounter()
- // const clrMsg = await greet.clrMsg()
+  const message = await greet.getClrMsg();
   // const greeting = await greet.getMsg()
   //greet.getMsg(),
   //const greeted = await greet.greetings(req.body.name, req.body.language)
 
     res.render("index", {
-    counter,
-   // clrMsg
+      counter,
+      clrMsg: message,
     });
     
 });
 
 app.post('/clearing',async function (req, res) {
-   const clrMsg = await greet.clearCounter();
-    
+    //const clrMsg = await greet.clearCounter();
+  //const counter = await greet.getCounter();
+  const counter = await greet.clearCounter();
+  const message = await greet.getClrMsg()
     //res.render("index", {clrMsg})
-    res.redirect('/')
+    res.render("index", {clrMsg:message})
 });
 
 app.post("/greeting",async function (req, res) {
