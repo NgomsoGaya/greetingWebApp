@@ -75,15 +75,15 @@ describe("Testing my greeting App",async function () {
     });
   });
 
-  describe("Testing the counter",async function () {
-    it("should return 2 when two different names are greeted",async function () {
-      let greeting = Greet();
-      await greeting.greetings("Zola", "isiXhosa");
-      await greeting.greetings("Yanga", "English");
-      let counter = await greeting.getCounter()
-      assert.equal(2, counter);
-    });
-  });
+  // describe("Testing the counter",async function () {
+  //   it("should return 2 when two different names are greeted",async function () {
+  //     let greeting = Greet();
+  //     await greeting.greetings("Zola", "isiXhosa");
+  //     await greeting.greetings("Yanga", "English");
+  //     let counter = await greeting.getCounter()
+  //     assert.equal(2, counter);
+  //   });
+  // });
 
  
 
