@@ -9,6 +9,8 @@ const connectionString =
 const db = pgp(connectionString);
     
 describe("The greeting web app", function () {
+    this.timeout(20000);
+
     beforeEach(async function () {
         try {
             await db.none("TRUNCATE TABLE greetings RESTART IDENTITY CASCADE")
@@ -17,24 +19,24 @@ describe("The greeting web app", function () {
             throw err;
         }
     });
-    it("shoud be able to add a greeting", async function () {
-        try {
-            let greet = Greet(db);
+    it("shoud be able to add a greeting", async function (){
+      try {
+        let greet = Greet(db);
 
-            await greet.add({
-                username: "Ngomso",
-                number: "1"
-            })
-            await greet.add({
-                username: 'Mihla',
-                number: "1"
-            })
-            let greetings = await greet.all();
-            assert.equal(2, greetings.length)
-        } catch (err) {
-            console.log(err)
-    }
-})
+        await greet.add({
+          username: "Ngomso",
+          number: "1",
+        });
+        await greet.add({
+          username: "Mihla",
+          number: "1",
+        });
+        let greetings = await greet.all();
+        assert.equal(2, greetings.length);
+      } catch (err) {
+        console.log(err);
+      }
+    });
     it("should be able to update a greeting", async function () {
          let greet = Greet(db);
         let greetings = await greet.add({

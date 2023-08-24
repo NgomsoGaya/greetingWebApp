@@ -1,7 +1,7 @@
 export default function Greet(db) {
 
   let msg = ''
-  let clrMsg = "";
+  //let clrMsg = "";
   let errmsg = ""
 
   async function greetings(name, lang) {
@@ -77,7 +77,7 @@ export default function Greet(db) {
   } 
   async function setErrorMsg(name, lang) {
      if (!name && !lang) {
-      errmsg = "Please enter a name and select a language"
+      errmsg = "Please enter a name and select a language.";
     }
     else if(!name){
         errmsg = "Please enter your name."
