@@ -1,3 +1,5 @@
+//here i have listed all my routes
+
 import flash from "express-flash";
 import session from "express-session";
 import express from "express";
@@ -5,6 +7,8 @@ import bodyParser from "body-parser";
 import exphbs from "express-handlebars";
 import Greet from "./functions/factory.js";
 import Cookie  from "express-session";
+import renderFactoy from "./render/renderMsg.js";
+import queryFunction from "./queries/databaseQ.js";
 
 import pgPromise from "pg-promise";
 import 'dotenv/config';
@@ -35,6 +39,8 @@ app.set("views", "./views");
 
 
 const greet = Greet(db)
+const query = queryFunction(db)
+const render = renderFactoy()
 
   app.use(session({
     secret : "greeting with routes",
@@ -51,82 +57,18 @@ app.use(bodyParser.json());
 app.use(Cookie());
 
 
-app.get('/', async function (req, res) {
-  
-  const counter = await greet.getCounter()
- // const message = await greet.getClrMsg();
-  // const greeting = await greet.getMsg()
-  //greet.getMsg(),
-  //const greeted = await greet.greetings(req.body.name, req.body.language)
 
-    res.render("index", {
-      counter,
-     // clrMsg: message,
-    });
-    
-});
+app.get('/', render.showCounter);
 
-app.post('/clearing',async function (req, res) {
-    await greet.clearCounter();
-  //const counter = await greet.getCounter();
- 
-  const message = await greet.getClrMsg()
-  const counter = await greet.getCounter();
-    //res.render("index", {clrMsg})
-    res.render("index", {clrMsg:message, counter})
-});
+app.post('/clearing', render.clearCounter);
 
-// app.use(session({
-//   secret:"just a secret key used as encryption",
-//   resave: false,
-//   saveUninitialized: true
-// }))
- 
-app.post("/greeting", async function (req, res) {
-  
-   let username =req.body.name
-   let language = req.body.language
-  
-  // let previousMessage = req.cookies.previousMessage || "";
-  
-  // let newMessage = await generateNewMessage(previousMessage);
-  let error = ""
-  if (!username || !language) {
-    await greet.setErrorMsg(username, language)
-    error = await greet.getErrorMsg()
-  }
-  // res.cookie('previosMessage', newMessage.identifier)
-  let greeting = "";
+app.post("/greeting", render.greetingMessage);
 
-  if (username && language) {
-    await greet.greetings(username, language)
-    await greet.getGreeting(username, language)
-    greeting = await greet.getMsg()
-  }
- 
-    const counter = await greet.getCounter()
-    // const clrMsg = await greet.clearCounter();
-    //const clrMsg = await greet.clrMsg()
+app.get("/greetings", render.namesGreeted);
 
-  res.render("index", {greeting, counter, error});
-});
-
-app.get("/greetings", async function (req, res) {
-  
-   let nameInstance = await greet.getNames()
-
-   res.render("names", {names: nameInstance})
-   
-});
-
-app.get("/greetings/:username", async function (req, res) {
-  console.log(req.params.username);
-  let numberInstance = await greet.getNumber(req.params.username);
-  res.render("number", {number: numberInstance, name: req.params.username});
-});
+app.get("/greetings/:username", render.namesGreetedTimes);
 
 const PORT = process.env.PORT || 3012
-
 app.listen(PORT, function () {
     console.log("App started at port", PORT)
 });

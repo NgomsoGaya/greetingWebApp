@@ -1,5 +1,15 @@
 import assert from "assert";
 import Greet from "../functions/factory.js";
+import queryFunction from "../queries/databaseQ.js";
+
+// import pgPromise from "pg-promise";
+// const pgp = pgPromise();
+
+// const connectionString =
+//   process.env.DATABASE_URL ||
+//   "postgres://greetingtable_user:EAyqRYtDCIU3qD6xdhFMLC8Jh40y8JlN@dpg-cjd1q2k5kgrc739hiflg-a.oregon-postgres.render.com/greetingtable?ssl=true";
+
+// const db = pgp(connectionString);
 
 describe("Testing my greeting App",async function () {
   describe("Testing name and language error",async function () {
@@ -48,32 +58,38 @@ describe("Testing my greeting App",async function () {
   //     );
   //   });
   // });
- describe("Testing greeting functionality",async function () {
-    it("should return 'Molo, Thabo' when Thabo is entered and isiXhosa is selected",async function () {
-      let greeting = Greet();
-      await greeting.greetings("Thabo", "isiXhosa");
-      await greeting.getGreeting("Thabo", "isiXhosa")
+//  describe("Testing greeting functionality",async function () {
+//     it("should return 'Molo, Thabo' when Thabo is entered and isiXhosa is selected",async function () {
+//       let greeting = Greet();
+//       let greetingQ = queryFunction(db)
 
-      assert.equal("Molo, Thabo",await greeting.getMsg());
-    });
-    it("should return 'Hello, Huey' when Huey is entered and English is selected",async function () {
-      let greeting = Greet();
-      await greeting.greetings("Huey", "English");
-      await greeting.getGreeting("Huey", "English")
+//       await greetingQ.greetingQ("Thabo", "isiXhosa");
+//       await greeting.getGreeting("Thabo", "isiXhosa")
 
-      assert.equal("Hello, Huey",await greeting.getMsg());
-    });
-    it("should return 'Hallo, Tristian' when Tristian is entered and Afrikaans is selected",async function () {
-      let greeting = Greet();
-      await greeting.greetings("Tristian", "Afrikaans");
-      await greeting.getGreeting("Tristian", "Afrikaans")
+//       assert.equal("Molo, Thabo",await greeting.getMsg());
+//     });
+//     it("should return 'Hello, Huey' when Huey is entered and English is selected",async function () {
+//       let greeting = Greet();
+//       let greetingQ = queryFunction(db);
+
+//       await greetingQ.greetingQ("Huey", "English");
+//       await greeting.getGreeting("Huey", "English")
+
+//       assert.equal("Hello, Huey",await greeting.getMsg());
+//     });
+//     it("should return 'Hallo, Tristian' when Tristian is entered and Afrikaans is selected",async function () {
+//       let greeting = Greet();
+//       let greetingQ = queryFunction(db);
+
+//       await greetingQ.greetingQ("Tristian", "Afrikaans");
+//       await greeting.getGreeting("Tristian", "Afrikaans")
       
-      assert.equal(
-        "Hallo, Tristian",
-        await greeting.getMsg()
-      );
-    });
-  });
+//       assert.equal(
+//         "Hallo, Tristian",
+//         await greeting.getMsg()
+//       );
+//     });
+//   });
 
   // describe("Testing the counter",async function () {
   //   it("should return 2 when two different names are greeted",async function () {
