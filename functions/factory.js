@@ -2,14 +2,24 @@ export default function Greet() {
 
   let msg = ''
   let errmsg = ""
+  let noErrmsg = ""
+  const nameRegex = /^[A-Za-z\s]+$/;
+   
 
   async function getClrMsg() {
        
         return "You have cleared the counter."; 
   }
+  async function numberSpecialCharrErr() {
+    
+        return "Numbers and special characters are not allowed."
+  }
 
   async function getGreeting(name, lang) {
-    if (lang && name) {
+
+     //let numbers = false; 
+    if (nameRegex.test(name)) {
+      if (lang && name) {
       if (lang == "isiXhosa") {
         msg = "Molo, " + name;
       } else if (lang == "English") {
@@ -17,7 +27,9 @@ export default function Greet() {
       } else if (lang == "Afrikaans") {
         msg = "Hallo, " + name;
       }
-    } 
+    }  
+    }
+    
   } 
   async function setErrorMsg(name, lang) {
      if (!name && !lang) {
@@ -27,7 +39,19 @@ export default function Greet() {
         errmsg = "Please enter your name."
     }else if(!lang){
         errmsg = "Please select a language."
-}
+    }
+  }
+
+  async function noErrorMsg(name, lang) {
+    if (name, lang) {
+      if (!nameRegex.test(name)) {
+        noErrmsg = "Numbers and special characters are not allowed";
+      }
+    }
+  }
+
+  async function getNoErrorMsg() {
+    return noErrmsg;
   }
    async function getErrorMsg() {
      return errmsg;
@@ -42,6 +66,9 @@ export default function Greet() {
         getErrorMsg,
         getGreeting,
         getMsg,
-        getClrMsg
+        getClrMsg,
+        numberSpecialCharrErr,
+        noErrorMsg,
+        getNoErrorMsg,
       };
     }

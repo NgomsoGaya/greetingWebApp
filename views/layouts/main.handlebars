@@ -16,11 +16,13 @@
     <script src="/functions/factory.js"></script>
     <script>
         setTimeout(function() {
+            var NoSpCharMsg = document.getElementById("NoSpCharMsg");
+                NoSpCharMsg.style.display = "none";
             var greeting = document.getElementById('greeting');
                 greeting.innerHTML = ''; 
             var clrmsg = document.getElementById('clearMsg');
                 clrmsg.style.display  = 'none'
-            var errmsg = document.getElementById("error")
+            var errmsg = document.getElementById("error");
                 errmsg.innerHTML = '';
         }, 5000);
     </script>

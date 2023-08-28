@@ -48,22 +48,30 @@ export default function renderFactoy() {
       let language = req.body.language;
 
       let error = "";
+      
+
       if (!username || !language) {
         await greet.setErrorMsg(username, language);
         error = await greet.getErrorMsg();
       }
 
       let greeting = "";
+      let NoSpCharMsg = "";
+      const nameRegex = /^[A-Za-z\s]+$/;
 
       if (username && language) {
         await query.greetingQ(username, language);
         await greet.getGreeting(username, language);
         greeting = await greet.getMsg();
       }
-
+      if (username && language && !nameRegex.test(username)) {
+            await greet.noErrorMsg(username, language);
+            NoSpCharMsg = await greet.getNoErrorMsg();
+      }
+      
       const counter = await query.getCounterQ();
 
-      res.render("index", { greeting, counter, error });
+      res.render("index", { greeting, counter, error, NoSpCharMsg});
     } catch (err) {
       next(err);
     }
