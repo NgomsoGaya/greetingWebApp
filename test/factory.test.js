@@ -105,65 +105,30 @@ describe("The greeting web app", function () {
 
       assert.equal(0, newCounter)
     })
+    it("should return numbers & special characters are not allowed when you enter numbers &/ special characters", async function () {
+      let greetingQ = queryFunction(db);
+      let greeting = Greet();
+
+      await greetingQ.greetingQ("2Pac", "isiXhosa");
+
+      await greeting.noErrorMsg("2Pac", "isiXhosa");
+
+      let errmsg = await greeting.getNoErrorMsg();
+
+      assert.equal("Numbers and special characters are not allowed.", errmsg);
+    });
+    it("should not increment the counter then number &/ special characters are inserted", async function () {
+      let greetingQ = queryFunction(db);
+      
+      await greetingQ.greetingQ("2Pac", "isiXhosa");
+
+
+      let counter = await greetingQ.getCounterQ();
+
+      assert.equal(0 , counter);
+    });
+
   });
-
-
-  // describe("Testing the counter", function () {
-  //   it("should return 9 when four more names are greeted", function () {
-  //     let greeting = Greet();
-  //     greeting.greetings("Zozi", "isiXhosa");
-  //     greeting.greetings("Yona", "English");
-  //     greeting.greetings("Zizo", "isiXhosa");
-  //     greeting.greetings("Nomsa", "English");
-
-  //     assert.equal(9, greeting.getCounter());
-  //   });
-  // });
-  // describe("Testing A greeted name", function () {
-  //   it("should return 9 when a name is greeted again", function () {
-  //     let greeting = Greet();
-  //     greeting.greetings("Zozi", "isiXhosa");
-  //     greeting.greetings("Yona", "English");
-  //     greeting.greetings("Zizo", "isiXhosa");
-  //     assert.equal(9, greeting.getCounter());
-  //   });
-  // });
-
-  // describe("Testing the reset button", function () {
-  //   it("should return 0 when the reset button is clicked", function () {
-  //     let greeting = Greet();
-
-  //     greeting.clearCounter();
-  //     assert.equal(0, greeting.getClearedCounter2());
-  //   });
-  //   it("should return you have cleared the counter when the reset button is clicked", function () {
-  //     let greeting = Greet();
-
-  //     greeting.clearedCounter();
-  //     assert.equal(
-  //       "You have cleared the counter!",
-  //       greeting.getClearedCounter()
-  //     );
-  //   });
-  // });
-
-  // describe("Testing greeting after clearing", function () {
-  //   it("should return 1 when a name is greeted", function () {
-  //     let greeting = Greet();
-  //     greeting.greetings("Zozi", "isiXhosa");
-  //     assert.equal(1, greeting.getCounter());
-  //   });
-
-  //   it("should return 5 when 4 more names are greeted", function () {
-  //     let greeting = Greet();
-  //     greeting.greetings("lisa", "isiXhosa");
-  //     greeting.greetings("loyiso", "isiXhosa");
-  //     greeting.greetings("dinga", "isiXhosa");
-  //     greeting.greetings("bonga", "isiXhosa");
-  //     assert.equal(5, greeting.getCounter());
-  //   });
-  // });
-
   after(function () {
     db.$pool.end;
   });

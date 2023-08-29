@@ -45,7 +45,7 @@ export default function Greet() {
   async function noErrorMsg(name, lang) {
     if (name, lang) {
       if (!nameRegex.test(name)) {
-        noErrmsg = "Numbers and special characters are not allowed";
+        noErrmsg = "Numbers and special characters are not allowed.";
       }
     }
   }
