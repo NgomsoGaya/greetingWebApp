@@ -24,14 +24,9 @@ describe("The greeting web app", function () {
     try {
       let greet = queryFunction(db);
 
-      await greet.greetingQ({
-        username: "Ngomso",
-        number: "1",
-      });
-      await greet.greetingQ({
-        username: "Mihla",
-        number: "1",
-      });
+      await greet.greetingQ("Ngomso", "isiXhosa");
+      await greet.greetingQ("Mihla", "isiXhosa");
+      
       let greetings = await greet.getCounterQ();
       assert.equal(2, greetings);
     } catch (err) {
@@ -41,25 +36,15 @@ describe("The greeting web app", function () {
   it("should be able to update a greeting", async function () {
     try {
       let greet = queryFunction(db);
-      let greetings = await greet.greetingQ({
-        username: "Ngomso",
-        number: "1",
-      });
+     await greet.greetingQ("Ngomso", "isiXhosa");
 
-      greetings.number = "2";
+     // greetings.number = "2";
       
-      await greet.greetingQ(greetings);
+     await greet.greetingQ("Ngomso", "isiXhosa");
 
-      let updateGreet = await greet.getCounterQ(greetings.id);
+      let updateGreet = await greet.getNumberQ("Ngomso");
 
-      assert.deepEqual(
-        {
-          username: "Ngomso",
-          number: "2",
-          id: 1,
-        },
-        updateGreet
-      );
+      assert.deepEqual( 2 , updateGreet.number);
     } catch (err) {
       console.log(err);
     }
@@ -102,6 +87,24 @@ describe("The greeting web app", function () {
 
       assert.equal("Hallo, Tristian", await greeting.getMsg());
     });
+    it("should return you have cleared the counter after you click clear button", async function () {
+      let greetingQ = queryFunction(db);
+      let greeting = Greet();
+
+      await greetingQ.clearCounterQ();
+      let msg = await greeting.getClrMsg()
+
+      assert.equal("You have cleared the counter.", msg);
+    })
+    it("should return 0 after you cleared the counter", async function () {
+       let greetingQ = queryFunction(db);
+      
+      await greetingQ.clearCounterQ()
+
+      let newCounter = await greetingQ.getCounterQ()
+
+      assert.equal(0, newCounter)
+    })
   });
 
 

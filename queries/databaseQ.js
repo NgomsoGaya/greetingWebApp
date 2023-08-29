@@ -14,8 +14,10 @@ export default function queryFunction(db) {
         console.log("Numbers and special characters are not allowed");
         return;
       }
-      
-      const normalizedInput = name.toLowerCase();
+      //if (name) {
+         const normalizedInput = name.toLowerCase();
+      //}
+     
 
       
         rows.forEach((row) => {
