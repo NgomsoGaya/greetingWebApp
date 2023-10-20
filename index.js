@@ -1,5 +1,4 @@
 //here i have listed all my routes
-
 import flash from "express-flash";
 import session from "express-session";
 import express from "express";
@@ -50,11 +49,9 @@ const render = renderFactoy()
 
    app.use(flash());
    app.use(express.static('public'))
-
-
-app.use(bodyParser.urlencoded({ extended: "main" }));
-app.use(bodyParser.json());
-app.use(Cookie());
+   app.use(bodyParser.urlencoded({ extended: "main" }));
+   app.use(bodyParser.json());
+   app.use(Cookie());
 
 
 

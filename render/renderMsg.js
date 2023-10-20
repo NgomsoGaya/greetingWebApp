@@ -67,7 +67,7 @@ export default function renderFactoy() {
       if (username && language && !nameRegex.test(username)) {
             await greet.noErrorMsg(username, language);
             NoSpCharMsg = await greet.getNoErrorMsg();
-      }
+      }2
       
       const counter = await query.getCounterQ();
 
